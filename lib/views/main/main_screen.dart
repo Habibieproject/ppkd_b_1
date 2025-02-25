@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_1/main/business/business_screen.dart';
-import 'package:ppkd_b_1/main/home/home_screen.dart';
-import 'package:ppkd_b_1/main/school/school_screen.dart';
+import 'package:ppkd_b_1/views/main/business/business_screen.dart';
+import 'package:ppkd_b_1/views/main/home/home_screen.dart';
+import 'package:ppkd_b_1/views/main/school/school_screen.dart';
 
 /// Flutter code sample for [BottomNavigationBar].
 
