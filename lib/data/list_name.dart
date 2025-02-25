@@ -1,0 +1,1 @@
+List listName = ["SMP Negeri 1", "SMP Negeri 2", "SMP Negeri 3", "SMP Negeri 4", "SMP Negeri 5", "SMP Negeri 6", "SMP Negeri 7", "SMP Negeri 8", "SMP Negeri 9", "SMP Negeri 10", "SMP Negeri 11", "SMP Negeri 12", "SMP Negeri 13", "SMP Negeri 14", "SMP Negeri 15", "SMP Negeri 16", "SMP Negeri 17", "SMP Negeri 18", "SMP Negeri 19", "SMP Negeri 20"];
