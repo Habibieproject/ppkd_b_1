@@ -9,7 +9,13 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Instagram')),
     
-      body: ListView.builder(
+      body: ListView.separated(
+        separatorBuilder: (context, index) {
+          return Divider();
+        },
+        shrinkWrap: true,
+        physics: BouncingScrollPhysics(),
+        // scrollDirection: Axis.horizontal,
         itemCount: listName.length,
         itemBuilder: (BuildContext context, int index) {
           final dataName =listName[index];

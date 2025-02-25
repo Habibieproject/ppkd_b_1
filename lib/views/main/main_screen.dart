@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/views/main/business/business_screen.dart';
 import 'package:ppkd_b_1/views/main/home/home_screen.dart';
 import 'package:ppkd_b_1/views/main/school/school_screen.dart';
+import 'package:ppkd_b_1/views/main/stack/profile_screen.dart';
+import 'package:ppkd_b_1/views/main/stack/stack_screen.dart';
 
 /// Flutter code sample for [BottomNavigationBar].
 
@@ -18,7 +20,8 @@ class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     BusinessScreen(),
-    SchoolScreen()
+    SchoolScreen(),
+    ProfileScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -56,9 +59,11 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.business), label: 'Business'),
           BottomNavigationBarItem(icon: Icon(Icons.school), label: 'School'),
+          BottomNavigationBarItem(icon: Icon(Icons.stacked_bar_chart), label: 'Stack'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
+        unselectedItemColor: Colors.blue[800],
         onTap: _onItemTapped,
       ),
     );
