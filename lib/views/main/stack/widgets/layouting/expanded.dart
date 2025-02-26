@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_1/views/main/stack/widgets/gridview.dart';
+import 'package:ppkd_b_1/views/main/stack/widgets/layouting/gridview.dart';
 
 class ExpandedScreen extends StatelessWidget {
   const ExpandedScreen({super.key});

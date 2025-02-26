@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/data/grid_data.dart';
-import 'package:ppkd_b_1/views/main/stack/widgets/expanded.dart';
-import 'package:ppkd_b_1/views/main/stack/widgets/gridview.dart';
+import 'package:ppkd_b_1/views/main/stack/widgets/input/textfield.dart';
+import 'package:ppkd_b_1/views/main/stack/widgets/layouting/expanded.dart';
+import 'package:ppkd_b_1/views/main/stack/widgets/layouting/gridview.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -42,6 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
+            titleConst("Layouting"),
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Expanded'),
@@ -56,18 +58,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 _onItemTapped('Grid');
               },
             ),
+           titleConst("Input"),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
+              leading: Icon(Icons.person),
+              title: Text('TextField'),
               onTap: () {
-                _onItemTapped('Settings');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
-              onTap: () {
-                _onItemTapped('Logout');
+                _onItemTapped('TextField');
               },
             ),
           ],
@@ -77,14 +73,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  Text titleConst(String text) => Text(text, style: TextStyle(fontSize: 24));
+
   Widget _buildBody() {
     switch (_selectedItem) {
       case 'Expanded':
         return ExpandedScreen();
       case 'Grid':
         return GridviewScreen();
-      case 'Settings':
-        return Center(child: Text('Settings Screen', style: TextStyle(fontSize: 24)));
+      case 'TextField':
+        return TextFieldScreen();
       case 'Logout':
         return Center(child: Text('Logout Screen', style: TextStyle(fontSize: 24)));
       default:
