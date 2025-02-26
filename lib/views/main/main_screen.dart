@@ -61,6 +61,7 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.school), label: 'School'),
           BottomNavigationBarItem(icon: Icon(Icons.stacked_bar_chart), label: 'Stack'),
         ],
+        
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         unselectedItemColor: Colors.blue[800],
