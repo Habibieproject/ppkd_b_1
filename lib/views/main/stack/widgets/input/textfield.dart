@@ -20,7 +20,7 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
           textField("email", controller: _emailController),
           SizedBox(height: 24,),
           titleField("Password"),
-          textField("password", controller: _passwordController),
+          textField("password", controller: _passwordController,isPassword: true),
 
 Row(
   children: [
@@ -40,7 +40,7 @@ Row(
         
         width: double.infinity,
         decoration: BoxDecoration(
-      color: Colors.indigoAccent,
+      color:_emailController.text.length>10?Colors.red: Colors.indigoAccent,
       borderRadius: BorderRadius.circular(50)),
         
         child: Row(
@@ -54,7 +54,7 @@ Row(
     );
   }
 
-  TextField textField(String hintext, {required TextEditingController controller}) {
+  TextField textField(String hintext, {required TextEditingController controller,bool isPassword = false}) {
     return TextField(
       controller: controller,
       onChanged: (value) {
@@ -62,13 +62,20 @@ Row(
           
         });
       },
+      obscuringCharacter: "x",
+      obscureText: isPassword,
+      style: TextStyle(),
+      keyboardType: TextInputType.name,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.grey[200],
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25)
             ),
-            hintText: "Masukkan $hintext"
+            hintText: "Masukkan $hintext",
+            labelText: isPassword? "Password":"Email",
+            prefixIcon: isPassword? Icon(Icons.key):Icon(Icons.email),
+            suffixIcon: isPassword? Icon(Icons.visibility):null
           ),
         );
   }
