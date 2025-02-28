@@ -32,15 +32,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.grey,
-              ),
+              decoration: BoxDecoration(color: Colors.grey),
               child: Text(
                 'Layouting',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
+                style: TextStyle(color: Colors.white, fontSize: 24),
               ),
             ),
             titleConst("Layouting"),
@@ -58,12 +53,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 _onItemTapped('Grid');
               },
             ),
-           titleConst("Input"),
+            titleConst("Input"),
             ListTile(
               leading: Icon(Icons.person),
               title: Text('TextField'),
               onTap: () {
                 _onItemTapped('TextField');
+              },
+            ),
+            titleConst("Event"),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Button'),
+              onTap: () {
+                _onItemTapped('Button');
               },
             ),
           ],
@@ -84,9 +87,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       case 'TextField':
         return TextFieldScreen();
       case 'Logout':
-        return Center(child: Text('Logout Screen', style: TextStyle(fontSize: 24)));
+        return Center(
+          child: Text('Logout Screen', style: TextStyle(fontSize: 24)),
+        );
       default:
-        return Center(child: Text('Profile Screen', style: TextStyle(fontSize: 24)));
+        return Center(
+          child: Text('Profile Screen', style: TextStyle(fontSize: 24)),
+        );
     }
   }
 }
