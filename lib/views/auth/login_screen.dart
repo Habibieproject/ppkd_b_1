@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ppkd_b_1/views/main/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -119,12 +120,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap:
                         _isActive
                             ? () {
-                              if (!_formKey.currentState!.validate())
-                                print(_emailController.text);
-                              print(_passwordController.text);
-                              print(_phoneController.text);
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Silahkan isi dulu")),
+                              // if (!_formKey.currentState!.validate())
+                              //   print(_emailController.text);
+                              // print(_passwordController.text);
+                              // print(_phoneController.text);
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //   SnackBar(content: Text("Silahkan isi dulu")),
+                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const MainScreen(),
+                                ),
                               );
                               // if (_emailController.text.length < 5) {
                               //   ScaffoldMessenger.of(context).showSnackBar(
