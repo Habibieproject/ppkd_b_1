@@ -76,8 +76,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Text titleConst(String text) => Text(text, style: TextStyle(fontSize: 24));
-
   Widget _buildBody() {
     switch (_selectedItem) {
       case 'Expanded':
@@ -97,3 +95,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 }
+
+Text titleConst(String text) => Text(text, style: TextStyle(fontSize: 24));

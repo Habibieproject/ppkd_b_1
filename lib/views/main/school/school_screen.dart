@@ -1,28 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/data/map_name.dart';
 import 'package:ppkd_b_1/data/model_name.dart';
+import 'package:ppkd_b_1/views/main/school/widgets/list_widget.dart';
+import 'package:ppkd_b_1/views/main/school/widgets/list_with_model.dart';
+import 'package:ppkd_b_1/views/main/school/widgets/map_widget.dart';
+import 'package:ppkd_b_1/views/main/stack/profile_screen.dart';
 
-class SchoolScreen extends StatelessWidget {
+class SchoolScreen extends StatefulWidget {
   const SchoolScreen({super.key});
+
+  @override
+  State<SchoolScreen> createState() => _SchoolScreenState();
+}
+
+class _SchoolScreenState extends State<SchoolScreen> {
+  String _selectedItem = 'List';
+
+  void _onItemTapped(String item) {
+    setState(() {
+      _selectedItem = item;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Instagram')),
-    
-      body: ListView.builder(
-        itemCount: listNameModelData.length,
-        itemBuilder: (BuildContext context, int index) {
-          final dataName =listNameModelData[index];
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(dataName.nameSchool, style: TextStyle(fontSize: 30),),
-            Text(dataName.address, style: TextStyle(fontSize: 20),),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.grey),
+              child: Text(
+                'ListView',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            titleConst("ListView"),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('List'),
+              onTap: () {
+                _onItemTapped('List');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Map'),
+              onTap: () {
+                _onItemTapped('Map');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Model'),
+              onTap: () {
+                _onItemTapped('Model');
+              },
+            ),
           ],
-        );
-        },
+        ),
       ),
+      body: _buildBody(),
     );
+  }
+
+  Widget _buildBody() {
+    switch (_selectedItem) {
+      case 'List':
+        return ListWidget();
+      case 'Map':
+        return ListMapWidget();
+      case 'Model':
+        return ListWithModel();
+      case 'Logout':
+        return Center(
+          child: Text('Logout Screen', style: TextStyle(fontSize: 24)),
+        );
+      default:
+        return Center(
+          child: Text('Profile Screen', style: TextStyle(fontSize: 24)),
+        );
+    }
   }
 }
