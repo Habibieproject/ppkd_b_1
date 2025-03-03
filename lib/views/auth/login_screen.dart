@@ -115,8 +115,38 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   space(),
-
-                  GestureDetector(
+                  // ElevatedButton(
+                  //   style: ElevatedButton.styleFrom(
+                  //     backgroundColor: Colors.grey.shade300,
+                  //     elevation: 0,
+                  //     side: const BorderSide(width: 2, color: Colors.black87),
+                  //   ),
+                  //   onPressed:
+                  //       _isActive
+                  //           ? () {
+                  //             // if (!_formKey.currentState!.validate())
+                  //             //   print(_emailController.text);
+                  //             // print(_passwordController.text);
+                  //             // print(_phoneController.text);
+                  //             // ScaffoldMessenger.of(context).showSnackBar(
+                  //             //   SnackBar(content: Text("Silahkan isi dulu")),
+                  //             // );
+                  //             Navigator.push(
+                  //               context,
+                  //               MaterialPageRoute(
+                  //                 builder: (context) => const MainScreen(),
+                  //               ),
+                  //             );
+                  //             // if (_emailController.text.length < 5) {
+                  //             //   ScaffoldMessenger.of(context).showSnackBar(
+                  //             //     SnackBar(content: Text("Silahkan isi dulu")),
+                  //             //   );
+                  //             // }
+                  //           }
+                  //           : null,
+                  //   child: Text("Login"),
+                  // ),
+                  InkWell(
                     onTap:
                         _isActive
                             ? () {
@@ -130,7 +160,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const MainScreen(),
+                                  builder:
+                                      (context) => MainScreen(
+                                        email: _emailController.text,
+                                        phone: _phoneController.text,
+                                      ),
                                 ),
                               );
                               // if (_emailController.text.length < 5) {
