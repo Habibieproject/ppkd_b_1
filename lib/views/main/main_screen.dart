@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/views/main/business/business_screen.dart';
 import 'package:ppkd_b_1/views/main/home/home_screen.dart';
+import 'package:ppkd_b_1/views/main/home/widgets/tab_bar.dart';
+import 'package:ppkd_b_1/views/main/home/widgets/wa/chats.dart';
+import 'package:ppkd_b_1/views/main/home/widgets/wa/contacts.dart';
 import 'package:ppkd_b_1/views/main/school/school_screen.dart';
 import 'package:ppkd_b_1/views/main/stack/profile_screen.dart';
 import 'package:ppkd_b_1/views/main/stack/stack_screen.dart';
@@ -32,8 +35,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _widgetOptions = <Widget>[
-      HomeScreen(email: widget.email, phone: widget.phone),
-      BusinessScreen(),
+      // HomeScreenNew(),
+      Chats(),
+      BusinessScreen(email: widget.email, phone: widget.phone),
       SchoolScreen(),
       ProfileScreen(),
     ];
