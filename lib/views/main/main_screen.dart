@@ -36,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final List<Widget> _widgetOptions = <Widget>[
       // HomeScreenNew(),
-      Chats(),
+      HomeScreen(email: widget.email, phone: widget.phone),
       BusinessScreen(email: widget.email, phone: widget.phone),
       SchoolScreen(),
       ProfileScreen(),
