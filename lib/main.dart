@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/views/auth/login_screen.dart';
+import 'package:ppkd_b_1/views/auth/splash_screen.dart';
 import 'package:ppkd_b_1/views/main/homepage.dart';
 import 'package:ppkd_b_1/views/main/main_screen.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: LoginScreen(),
+      home: SplashScreen(),
       // home: MainScreen(),
     );
   }

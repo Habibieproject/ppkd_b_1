@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ppkd_b_1/utils/constant/app_color.dart';
 import 'package:ppkd_b_1/views/main/home/quiz/widgets/default_button.dart';
 
 class DetailQuizScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _DetailQuizScreenState extends State<DetailQuizScreen> {
               SizedBox(height: 40),
               Expanded(child: _buildOption()),
               DefaultButton(
-                backgroundColor: Color(0xff004643),
+                backgroundColor: AppColor.secondaryColor,
                 text: "Next",
                 onPressed: () {},
               ),
@@ -69,7 +70,7 @@ class _DetailQuizScreenState extends State<DetailQuizScreen> {
                   padding: const EdgeInsets.only(right: 12.0),
                   child: Icon(
                     isSelected ? Icons.check_circle : Icons.circle_outlined,
-                    color: Color(0xff004643),
+                    color: AppColor.secondaryColor,
                   ),
                 ),
               ],
@@ -124,7 +125,7 @@ class _DetailQuizScreenState extends State<DetailQuizScreen> {
                       strokeWidth: 8,
                       backgroundColor: Color(0xffABD1C6),
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        Color(0xff004643),
+                        AppColor.secondaryColor,
                       ),
                     ),
                   ),
@@ -134,7 +135,7 @@ class _DetailQuizScreenState extends State<DetailQuizScreen> {
                       fontSize: 32,
                       fontWeight: FontWeight.w600,
 
-                      color: Color(0xff004643),
+                      color: AppColor.secondaryColor,
                     ),
                   ),
                 ],

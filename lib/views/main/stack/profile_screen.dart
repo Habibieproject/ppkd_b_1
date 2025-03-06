@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/data/grid_data.dart';
+import 'package:ppkd_b_1/service/pref_handler.dart';
+import 'package:ppkd_b_1/views/auth/login_screen.dart';
 import 'package:ppkd_b_1/views/main/stack/widgets/input/textfield.dart';
 import 'package:ppkd_b_1/views/main/stack/widgets/layouting/expanded.dart';
 import 'package:ppkd_b_1/views/main/stack/widgets/layouting/gridview.dart';
@@ -67,6 +69,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: Text('Button'),
               onTap: () {
                 _onItemTapped('Button');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
+              onTap: () {
+                PreferenceHandler.removeId();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
               },
             ),
           ],

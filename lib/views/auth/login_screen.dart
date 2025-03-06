@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ppkd_b_1/service/pref_handler.dart';
 import 'package:ppkd_b_1/views/main/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -149,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   InkWell(
                     onTap:
                         _isActive
-                            ? () {
+                            ? () async {
                               // if (!_formKey.currentState!.validate())
                               //   print(_emailController.text);
                               // print(_passwordController.text);
@@ -157,6 +158,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               // ScaffoldMessenger.of(context).showSnackBar(
                               //   SnackBar(content: Text("Silahkan isi dulu")),
                               // );
+                              // var userId = await PreferenceHandler.getId();
+                              // print(userId);
+                              PreferenceHandler.saveId(_emailController.text);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

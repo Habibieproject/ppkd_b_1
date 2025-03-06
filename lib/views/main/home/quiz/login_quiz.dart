@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_1/views/main/home/quiz/constant/app_image.dart';
+import 'package:ppkd_b_1/utils/constant/app_color.dart';
+import 'package:ppkd_b_1/utils/constant/app_image.dart';
 import 'package:ppkd_b_1/views/main/home/quiz/detail_quiz.dart';
 import 'package:ppkd_b_1/views/main/home/quiz/widgets/default_button.dart';
 
@@ -67,7 +68,7 @@ class LoginQuizScreen extends StatelessWidget {
                 ),
                 Spacer(flex: 3),
                 DefaultButton(
-                  backgroundColor: Color(0xffF8C660),
+                  backgroundColor: AppColor.primaryColor,
                   text: "Start",
                   onPressed: () {
                     Navigator.of(context).push(
