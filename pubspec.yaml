@@ -30,9 +30,10 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.8
   dropdown_button2: ^2.3.9
-  shared_preferences: ^2.5.2
   flutter:
     sdk: flutter
+  introduction_screen: ^3.1.17
+  shared_preferences: ^2.5.2
 
 dev_dependencies:
   flutter_lints: ^5.0.0
