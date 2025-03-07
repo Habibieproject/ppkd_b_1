@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ppkd_b_1/controller/counter_provider.dart';
 import 'package:ppkd_b_1/data/map_name.dart';
 import 'package:ppkd_b_1/data/model_name.dart';
 import 'package:ppkd_b_1/views/main/school/widgets/list_widget.dart';
 import 'package:ppkd_b_1/views/main/school/widgets/list_with_model.dart';
 import 'package:ppkd_b_1/views/main/school/widgets/map_widget.dart';
 import 'package:ppkd_b_1/views/main/stack/profile_screen.dart';
+import 'package:provider/provider.dart';
 
 class SchoolScreen extends StatefulWidget {
   const SchoolScreen({super.key});
@@ -24,8 +26,10 @@ class _SchoolScreenState extends State<SchoolScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final counterProvider = Provider.of<CounterProvider>(context);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Instagram')),
+      appBar: AppBar(title: Text('${counterProvider.counter}')),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
