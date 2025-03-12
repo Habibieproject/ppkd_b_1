@@ -28,16 +28,18 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  confetti: ^0.8.0
   cupertino_icons: ^1.0.8
   dropdown_button2: ^2.3.9
   flutter:
     sdk: flutter
   introduction_screen: ^3.1.17
+  lottie: ^3.3.1
   path: ^1.9.1
   provider: ^6.1.2
   shared_preferences: ^2.5.2
   sqflite: ^2.4.2
-  lottie: ^3.3.1
+  storage_view: ^0.1.0-dev.4
 
 dev_dependencies:
   flutter_lints: ^5.0.0

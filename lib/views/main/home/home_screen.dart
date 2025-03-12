@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/controller/counter_provider.dart';
 import 'package:ppkd_b_1/data/list_name.dart';
 import 'package:ppkd_b_1/views/main/home/quiz/login_quiz.dart';
+import 'package:ppkd_b_1/views/main/home/random/random_picker_screen.dart';
 import 'package:ppkd_b_1/views/main/home/todo/todo_app.dart';
 import 'package:ppkd_b_1/views/main/home/widgets/wa/chats.dart';
 import 'package:provider/provider.dart';
@@ -52,6 +53,16 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                     child: Text("TODO"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => RandomPickerScreen(),
+                        ),
+                      );
+                    },
+                    child: Text("Random Picker"),
                   ),
                   // counterProvider.loading == true
                   //     ? CircularProgressIndicator()

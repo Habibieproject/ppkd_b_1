@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/controller/counter_provider.dart';
+import 'package:ppkd_b_1/controller/random_picker_provider.dart';
 import 'package:ppkd_b_1/views/auth/login_screen.dart';
 import 'package:ppkd_b_1/views/auth/splash_screen.dart';
 import 'package:ppkd_b_1/views/main/homepage.dart';
@@ -11,6 +12,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CounterProvider()),
+        ChangeNotifierProvider(create: (context) => RandomPickerProvider()),
       ],
       child: const MyApp(),
     ),
