@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/controller/counter_provider.dart';
 import 'package:ppkd_b_1/data/list_name.dart';
+import 'package:ppkd_b_1/views/main/home/album/album_app.dart';
 import 'package:ppkd_b_1/views/main/home/quiz/login_quiz.dart';
 import 'package:ppkd_b_1/views/main/home/random/random_picker_screen.dart';
 import 'package:ppkd_b_1/views/main/home/todo/todo_app.dart';
@@ -63,6 +64,16 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                     child: Text("Random Picker"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => AlbumAppScreen(),
+                        ),
+                      );
+                    },
+                    child: Text("Album App"),
                   ),
                   // counterProvider.loading == true
                   //     ? CircularProgressIndicator()
