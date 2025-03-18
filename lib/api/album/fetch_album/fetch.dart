@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:ppkd_b_1/api/album/model/album.dart';
-import 'package:http/http.dart' as http;
 import 'package:ppkd_b_1/api/repo.dart';
 
 Future<AlbumResponse> fetchAlbum() async {

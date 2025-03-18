@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_1/data/list_name.dart';
-import 'package:ppkd_b_1/data/map_name.dart';
 import 'package:ppkd_b_1/data/model_name.dart';
 
 enum SingingCharacter { lafayette, jefferson }

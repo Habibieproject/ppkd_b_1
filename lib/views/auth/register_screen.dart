@@ -1,21 +1,19 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/service/firebase_auth.dart';
 import 'package:ppkd_b_1/service/pref_handler.dart';
-import 'package:ppkd_b_1/views/auth/register_screen.dart';
+import 'package:ppkd_b_1/views/auth/login_screen.dart';
 import 'package:ppkd_b_1/views/main/main_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
 
   bool _isObsecure = false;
   final bool _isActive = true;
@@ -47,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Column(
                         children: [
                           Text(
-                            "Welcome Back",
+                            "Welcome",
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -55,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           space(),
                           Text(
-                            "Login to access your account",
+                            "Register to continue",
                             style: TextStyle(fontSize: 14, color: Colors.grey),
                           ),
                         ],
@@ -77,20 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                   ),
-                  space(),
-                  titleField("Phone Number"),
-                  space(),
 
-                  textFieldConst(
-                    hintText: "Enter Phone Number",
-                    controller: _phoneController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Nomor Telpon belum di isi";
-                      }
-                      return null;
-                    },
-                  ),
                   space(height: 16),
 
                   titleField("Password"),
@@ -107,97 +92,28 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                   ),
+
                   space(),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Forgot Password",
-                        style: TextStyle(color: Color(0xffF34B1B)),
-                      ),
-                    ],
-                  ),
-                  space(),
-                  // ElevatedButton(
-                  //   style: ElevatedButton.styleFrom(
-                  //     backgroundColor: Colors.grey.shade300,
-                  //     elevation: 0,
-                  //     side: const BorderSide(width: 2, color: Colors.black87),
-                  //   ),
-                  //   onPressed:
-                  //       _isActive
-                  //           ? () {
-                  //             // if (!_formKey.currentState!.validate())
-                  //             //   print(_emailController.text);
-                  //             // print(_passwordController.text);
-                  //             // print(_phoneController.text);
-                  //             // ScaffoldMessenger.of(context).showSnackBar(
-                  //             //   SnackBar(content: Text("Silahkan isi dulu")),
-                  //             // );
-                  //             Navigator.push(
-                  //               context,
-                  //               MaterialPageRoute(
-                  //                 builder: (context) => const MainScreen(),
-                  //               ),
-                  //             );
-                  //             // if (_emailController.text.length < 5) {
-                  //             //   ScaffoldMessenger.of(context).showSnackBar(
-                  //             //     SnackBar(content: Text("Silahkan isi dulu")),
-                  //             //   );
-                  //             // }
-                  //           }
-                  //           : null,
-                  //   child: Text("Login"),
-                  // ),
                   InkWell(
                     onTap:
                         _isActive
                             ? () async {
-                              final result = await AuthService().loginUser(
+                              final result = await AuthService().signUpUser(
                                 email: _emailController.text,
                                 password: _passwordController.text,
                               );
 
                               if (result == "success") {
+                                _emailController.clear();
+                                _passwordController.clear();
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder:
-                                        (context) => MainScreen(
-                                          email: _emailController.text,
-                                          phone: _phoneController.text,
-                                        ),
+                                    builder: (context) => LoginScreen(),
                                   ),
                                 );
-                                _emailController.clear();
-                                _passwordController.clear();
                               }
-                              // if (!_formKey.currentState!.validate())
-                              //   print(_emailController.text);
-                              // print(_passwordController.text);
-                              // print(_phoneController.text);
-                              // ScaffoldMessenger.of(context).showSnackBar(
-                              //   SnackBar(content: Text("Silahkan isi dulu")),
-                              // );
-                              // var userId = await PreferenceHandler.getId();
-                              // print(userId);
-                              // PreferenceHandler.saveId(_emailController.text);
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder:
-                              //         (context) => MainScreen(
-                              //           email: _emailController.text,
-                              //           phone: _phoneController.text,
-                              //         ),
-                              //   ),
-                              // );
-                              // if (_emailController.text.length < 5) {
-                              //   ScaffoldMessenger.of(context).showSnackBar(
-                              //     SnackBar(content: Text("Silahkan isi dulu")),
-                              //   );
-                              // }
                             }
                             : null,
                     child: Container(
@@ -216,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Login",
+                            "Register",
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.white,
@@ -227,49 +143,38 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  space(height: 24),
-                  Text(
-                    "Or Sign in with",
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
-                  space(height: 24),
-                  Container(
-                    padding: EdgeInsets.all(16),
+                  // space(height: 24),
+                  // Text(
+                  //   "Or Sign in with",
+                  //   style: TextStyle(color: Colors.grey, fontSize: 12),
+                  // ),
+                  // space(height: 24),
+                  // Container(
+                  //   padding: EdgeInsets.all(16),
 
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
+                  //   width: double.infinity,
+                  //   decoration: BoxDecoration(
+                  //     color: Colors.white,
+                  //     borderRadius: BorderRadius.circular(6),
+                  //   ),
 
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset("assets/images/google.png", height: 16),
-                        SizedBox(width: 8),
-                        Text("Google", style: TextStyle(fontSize: 14)),
-                      ],
-                    ),
-                  ),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.center,
+                  //     children: [
+                  //       Image.asset("assets/images/google.png", height: 16),
+                  //       SizedBox(width: 8),
+                  //       Text("Google", style: TextStyle(fontSize: 14)),
+                  //     ],
+                  //   ),
+                  // ),
                   space(height: 24),
                   RichText(
                     text: TextSpan(
-                      text: "Don’t have an account? ",
+                      text: "Have an account? ",
                       style: TextStyle(color: Colors.grey, fontSize: 12),
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Sign Up',
-                          recognizer:
-                              TapGestureRecognizer()
-                                ..onTap = () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder:
-                                          (context) => const RegisterScreen(),
-                                    ),
-                                  );
-                                },
+                          text: 'Sign In',
                           style: TextStyle(
                             color: Color(0xff283FB1),
                             fontSize: 12,

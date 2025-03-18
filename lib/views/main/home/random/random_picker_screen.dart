@@ -6,6 +6,8 @@ import 'package:ppkd_b_1/views/main/home/quiz/widgets/default_button.dart';
 import 'package:provider/provider.dart';
 
 class RandomPickerScreen extends StatelessWidget {
+  const RandomPickerScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final randomPicker = Provider.of<RandomPickerProvider>(context);

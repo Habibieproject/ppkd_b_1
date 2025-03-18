@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_1/views/main/home/widgets/wa/contacts.dart';
-import 'package:ppkd_b_1/views/main/home/widgets/wa/status.dart';
-
-import 'calls.dart';
 
 class Chats extends StatelessWidget {
   //const Chats({Key? key}) : super(key: key);
   static const String id = 'chats';
+
+  const Chats({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +97,7 @@ class Chats extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: Container(
+      floatingActionButton: SizedBox(
         width: 70,
         height: 70,
         child: FittedBox(

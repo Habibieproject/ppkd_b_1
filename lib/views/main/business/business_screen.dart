@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_1/data/map_name.dart';
 import 'package:ppkd_b_1/views/main/business/widgets/checkbox.dart';
 import 'package:ppkd_b_1/views/main/business/widgets/dropdownbutton.dart';
 import 'package:ppkd_b_1/views/main/business/widgets/radiobutton.dart';
 import 'package:ppkd_b_1/views/main/business/widgets/tabbar.dart';
-import 'package:ppkd_b_1/views/main/home/home_screen.dart';
 import 'package:ppkd_b_1/views/main/stack/profile_screen.dart';
-import 'package:ppkd_b_1/views/main/stack/widgets/layouting/gridview.dart';
 
 class BusinessScreen extends StatefulWidget {
   const BusinessScreen({super.key, required this.email, required this.phone});

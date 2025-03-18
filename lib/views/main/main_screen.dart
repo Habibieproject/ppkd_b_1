@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/views/main/business/business_screen.dart';
 import 'package:ppkd_b_1/views/main/home/home_screen.dart';
-import 'package:ppkd_b_1/views/main/home/widgets/tab_bar.dart';
-import 'package:ppkd_b_1/views/main/home/widgets/wa/chats.dart';
-import 'package:ppkd_b_1/views/main/home/widgets/wa/contacts.dart';
 import 'package:ppkd_b_1/views/main/school/school_screen.dart';
 import 'package:ppkd_b_1/views/main/stack/profile_screen.dart';
-import 'package:ppkd_b_1/views/main/stack/stack_screen.dart';
 
 /// Flutter code sample for [BottomNavigationBar].
 
@@ -34,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _widgetOptions = <Widget>[
+    final List<Widget> widgetOptions = <Widget>[
       // HomeScreenNew(),
       HomeScreen(email: widget.email, phone: widget.phone),
       BusinessScreen(email: widget.email, phone: widget.phone),
@@ -43,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
     ];
     return Scaffold(
       // appBar: AppBar(title: const Text('BottomNavigationBar Sample')),
-      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+      body: Center(child: widgetOptions.elementAt(_selectedIndex)),
 
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,

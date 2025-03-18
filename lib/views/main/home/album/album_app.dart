@@ -23,23 +23,24 @@ class _AlbumAppScreenState extends State<AlbumAppScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fetch Data Example'),
+        title: const Text(
+          'Fetch Data Example',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: AppColor.secondaryColor,
       ),
       body: FutureBuilder<AlbumResponse>(
         future: futureAlbum,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Text(
-              snapshot.data?.title ?? "",
-              style: TextStyle(fontSize: 40),
-            );
+            AlbumResponse? value = snapshot.data;
+            return Text(value?.title ?? "", style: TextStyle(fontSize: 40));
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
 
           // By default, show a loading spinner.
-          return const CircularProgressIndicator();
+          return Center(child: const CircularProgressIndicator());
         },
       ),
     );

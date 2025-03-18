@@ -5,6 +5,8 @@ class Contacts extends StatelessWidget {
   //const Chats({Key? key}) : super(key: key);
   static const String id = 'contacts';
 
+  const Contacts({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

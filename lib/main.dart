@@ -1,13 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/controller/counter_provider.dart';
 import 'package:ppkd_b_1/controller/random_picker_provider.dart';
-import 'package:ppkd_b_1/views/auth/login_screen.dart';
+import 'package:ppkd_b_1/firebase_options.dart';
+import 'package:ppkd_b_1/utils/constant/app_color.dart';
 import 'package:ppkd_b_1/views/auth/splash_screen.dart';
-import 'package:ppkd_b_1/views/main/homepage.dart';
-import 'package:ppkd_b_1/views/main/main_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
       providers: [
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
 
       theme: ThemeData(
         // brightness: Brightness.dark,
-        primaryColor: Colors.blueAccent,
+        primaryColor: AppColor.secondaryColor,
         fontFamily: "Baloo_2",
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         inputDecorationTheme: InputDecorationTheme(

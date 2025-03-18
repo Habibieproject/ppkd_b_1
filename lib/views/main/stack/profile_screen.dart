@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ppkd_b_1/data/grid_data.dart';
 import 'package:ppkd_b_1/service/pref_handler.dart';
 import 'package:ppkd_b_1/views/auth/login_screen.dart';
 import 'package:ppkd_b_1/views/main/stack/widgets/input/textfield.dart';
