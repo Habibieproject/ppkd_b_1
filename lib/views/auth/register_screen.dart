@@ -1,8 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/service/firebase_auth.dart';
-import 'package:ppkd_b_1/service/pref_handler.dart';
 import 'package:ppkd_b_1/views/auth/login_screen.dart';
-import 'package:ppkd_b_1/views/main/main_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -12,12 +11,41 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
 
-  bool _isObsecure = false;
-  final bool _isActive = true;
+  bool _isObsecure = true;
+  bool _isLoading = false;
   final _formKey = GlobalKey<FormState>();
+
+  void _registerUser() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() => _isLoading = true);
+
+    final result = await _authService.signUpUser(
+      name: _nameController.text.trim(),
+      email: _emailController.text.trim(),
+      phone: _phoneController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+
+    setState(() => _isLoading = false);
+
+    if (result == "success") {
+      _nameController.clear();
+      _phoneController.clear();
+      _emailController.clear();
+      _passwordController.clear();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,136 +65,97 @@ class _RegisterScreenState extends State<RegisterScreen> {
               padding: const EdgeInsets.all(24.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            "Welcome",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          space(),
-                          Text(
-                            "Register to continue",
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
-                          ),
-                        ],
-                      ),
-                    ],
+                  Text(
+                    "Welcome",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  space(),
+                  Text(
+                    "Register to continue",
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                   space(height: 24),
 
+                  titleField("Full Name"),
+                  space(),
+                  textFieldConst(
+                    hintText: "Enter Full Name",
+                    controller: _nameController,
+                    validator:
+                        (value) => value!.isEmpty ? "Nama belum diisi" : null,
+                  ),
+
+                  space(),
+                  titleField("Phone Number"),
+                  space(),
+                  textFieldConst(
+                    hintText: "Enter Phone Number",
+                    controller: _phoneController,
+                    validator:
+                        (value) =>
+                            value!.isEmpty ? "Nomor telepon belum diisi" : null,
+                  ),
+
+                  space(),
                   titleField("Email Address"),
                   space(),
-
                   textFieldConst(
                     hintText: "Enter Email",
                     controller: _emailController,
                     validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Email belum di isi";
-                      }
-                      return null;
-                    },
-                  ),
-
-                  space(height: 16),
-
-                  titleField("Password"),
-                  space(height: 16),
-
-                  textFieldConst(
-                    hintText: "Enter Password",
-                    isPassword: true,
-                    controller: _passwordController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Password belum di isi";
+                      if (value!.isEmpty) return "Email belum diisi";
+                      if (!RegExp(
+                        r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
+                      ).hasMatch(value)) {
+                        return "Format email tidak valid";
                       }
                       return null;
                     },
                   ),
 
                   space(),
+                  titleField("Password"),
+                  space(),
+                  textFieldConst(
+                    hintText: "Enter Password",
+                    isPassword: true,
+                    controller: _passwordController,
+                    validator:
+                        (value) =>
+                            value!.isEmpty ? "Password belum diisi" : null,
+                  ),
 
+                  space(),
                   InkWell(
-                    onTap:
-                        _isActive
-                            ? () async {
-                              final result = await AuthService().signUpUser(
-                                email: _emailController.text,
-                                password: _passwordController.text,
-                              );
-
-                              if (result == "success") {
-                                _emailController.clear();
-                                _passwordController.clear();
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ),
-                                );
-                              }
-                            }
-                            : null,
+                    onTap: _isLoading ? null : _registerUser,
                     child: Container(
                       padding: EdgeInsets.all(16),
-
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color:
-                            _isActive
-                                ? Color(0xff283FB1)
-                                : Color(0xff283FB1).withOpacity(0.2),
+                        color: _isLoading ? Colors.grey : Color(0xff283FB1),
                         borderRadius: BorderRadius.circular(6),
                       ),
-
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Register",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
+                      child:
+                          _isLoading
+                              ? Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              )
+                              : Center(
+                                child: Text(
+                                  "Register",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                     ),
                   ),
-                  // space(height: 24),
-                  // Text(
-                  //   "Or Sign in with",
-                  //   style: TextStyle(color: Colors.grey, fontSize: 12),
-                  // ),
-                  // space(height: 24),
-                  // Container(
-                  //   padding: EdgeInsets.all(16),
 
-                  //   width: double.infinity,
-                  //   decoration: BoxDecoration(
-                  //     color: Colors.white,
-                  //     borderRadius: BorderRadius.circular(6),
-                  //   ),
-
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       Image.asset("assets/images/google.png", height: 16),
-                  //       SizedBox(width: 8),
-                  //       Text("Google", style: TextStyle(fontSize: 14)),
-                  //     ],
-                  //   ),
-                  // ),
                   space(height: 24),
                   RichText(
                     text: TextSpan(
@@ -175,6 +164,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Sign In',
+                          recognizer:
+                              TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const LoginScreen(),
+                                    ),
+                                  );
+                                },
                           style: TextStyle(
                             color: Color(0xff283FB1),
                             fontSize: 12,
@@ -201,39 +200,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     required TextEditingController controller,
     String? Function(String?)? validator,
   }) => TextFormField(
-    onChanged: (value) {
-      // if (controller.text.length > 5) {
-      //   setState(() {
-      //     _isActive = true;
-      //   });
-      // } else {
-      //   setState(() {
-      //     _isActive = false;
-      //   });
-      // }
-    },
-
     controller: controller,
     validator: validator,
     obscureText: isPassword ? _isObsecure : false,
     decoration: InputDecoration(
       hintText: hintText,
-      suffixIcon:
-          isPassword
-              ? IconButton(
-                onPressed: () {
-                  setState(() {
-                    _isObsecure = !_isObsecure;
-                    print("_isObsecure");
-                    print(_isObsecure);
-                  });
-                },
-                icon: Icon(
-                  _isObsecure ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.grey,
-                ),
-              )
-              : null,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
     ),
   );

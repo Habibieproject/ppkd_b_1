@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ppkd_b_1/service/firebase_auth.dart';
 import 'package:ppkd_b_1/service/pref_handler.dart';
 import 'package:ppkd_b_1/views/auth/login_screen.dart';
 import 'package:ppkd_b_1/views/main/stack/widgets/input/textfield.dart';
@@ -75,6 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: Text('Logout'),
               onTap: () {
                 PreferenceHandler.removeId();
+                AuthService().logout();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => LoginScreen()),
