@@ -7,12 +7,21 @@ class NoteByUserService {
 
   // **1️⃣ Menambah Catatan berdasarkan UID pengguna**
   Future<void> addNote(NoteByUserModel note) async {
-    await _noteCollection.doc(note.uid).collection("entries").add(note.toMap());
+    await _noteCollection
+        .doc('naruo123')
+        .collection("entries")
+        .add(note.toMap())
+        .then(
+          (c) {},
+          onError: (v) {
+            print(v);
+          },
+        );
   }
 
   // **2️⃣ Mengambil Semua Catatan Hanya Milik Pengguna yang Login**
   Stream<List<NoteByUserModel>> getNotesByUser(String uid) {
-    return _noteCollection.doc(uid).collection("entries").snapshots().map((
+    return _noteCollection.doc().collection("entries").snapshots().map((
       snapshot,
     ) {
       return snapshot.docs.map((doc) {
@@ -30,13 +39,19 @@ class NoteByUserService {
     String noteId,
     bool isChecked,
   ) async {
-    await _noteCollection.doc(uid).collection("entries").doc(noteId).update({
-      'isChecked': isChecked,
-    });
+    await _noteCollection
+        .doc('naruo123')
+        .collection("entries")
+        .doc(noteId)
+        .update({'isChecked': isChecked});
   }
 
   // **4️⃣ Hapus Catatan**
   Future<void> deleteNote(String uid, String noteId) async {
-    await _noteCollection.doc(uid).collection("entries").doc(noteId).delete();
+    await _noteCollection
+        .doc('naruo123')
+        .collection("entries")
+        .doc(noteId)
+        .delete();
   }
 }

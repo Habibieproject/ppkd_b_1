@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ppkd_b_1/controller/counter_provider.dart';
 import 'package:ppkd_b_1/views/main/home/album/album_app.dart';
+import 'package:ppkd_b_1/views/main/home/geo/geo_app.dart';
 import 'package:ppkd_b_1/views/main/home/note_by_user/note_by_user_firebase.dart';
 import 'package:ppkd_b_1/views/main/home/note_firebase/note_firebase.dart';
 import 'package:ppkd_b_1/views/main/home/profile_firebase/user_profile_screen.dart';
@@ -104,6 +105,16 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                     child: Text("User App"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => GeoAppScreeen(),
+                        ),
+                      );
+                    },
+                    child: Text("Geo App"),
                   ),
                   // counterProvider.loading == true
                   //     ? CircularProgressIndicator()
