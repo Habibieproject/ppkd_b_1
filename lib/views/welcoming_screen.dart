@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:ppkd_b_1/service/pref_handler.dart';
 import 'package:ppkd_b_1/utils/constant/app_image.dart';
+import 'package:ppkd_b_1/views/auth/login_absen_screen.dart';
 import 'package:ppkd_b_1/views/auth/login_screen.dart';
 
 class IntroScreens extends StatefulWidget {
@@ -23,7 +24,7 @@ class _IntroScreensState extends State<IntroScreens> {
           PreferenceHandler.saveLookWelcoming(true);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => LoginScreen()),
+            MaterialPageRoute(builder: (context) => LoginAbsenScreen()),
           );
         },
         done: const Text(

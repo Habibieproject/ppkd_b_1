@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PreferenceHandler {
   static const String _id = 'idUser';
   static const String _lookWelcoming = 'lookWelcoming';
+  static const String _token = 'token';
 
   // For saving user id
   static void saveId(String id) {
@@ -16,6 +17,14 @@ class PreferenceHandler {
     print('look: $look');
     SharedPreferences.getInstance().then((prefs) {
       prefs.setBool(_lookWelcoming, look);
+    });
+  }
+
+  // For saving token
+  static void saveToken(String token) {
+    print('token: $token');
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setString(_token, token);
     });
   }
 
@@ -38,6 +47,13 @@ class PreferenceHandler {
     SharedPreferences.getInstance().then((prefs) {
       // prefs.remove(_id);
       prefs.clear();
+    });
+  }
+
+  // For removing token
+  static void removeToken() {
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.remove(_token);
     });
   }
 }
